@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LE PROVOCATOUR · El Tour de los Sentidos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #0a1f4e;   /* azul oscuro Mallorca */
+    --parchment: #fff8e7;   /* crema cálido sobre azul */
+    --gold:      #f5c400;   /* amarillo bandera */
+    --wine:      #c0152a;   /* rojo bandera */
+    --dusk:      #0d2a6b;   /* azul medio */
+    --mist:      #d6e4f7;   /* azul muy claro */
+    --pale:      #f0f6ff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.4rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(6,14,34,0.97), transparent);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    color: var(--mist);
+    text-decoration: none;
+    font-size: 0.82rem;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 6rem;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 65% 35%, rgba(192,21,42,0.3) 0%, transparent 55%),
+      radial-gradient(ellipse at 15% 75%, rgba(245,196,0,0.12) 0%, transparent 50%),
+      linear-gradient(165deg, #060e22 0%, #0a1f4e 50%, #0d2a6b 100%);
+    overflow: hidden;
+  }
+
+  .hero-ornament {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+    animation: pulse 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .hero-ornament::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.05);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50%       { transform: translate(-50%, -50%) scale(1.04); opacity: 1; }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--parchment);
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    color: rgba(245,240,232,0.55);
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.82rem;
+  }
+  .hero-cta:hover { background: var(--gold); color: var(--ink); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem; right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: rgba(245,240,232,0.35);
+    font-size: 0.78rem;
+    content: '';
+    display: block;
+    width: 40px; height: 1px;
+    background: rgba(201,168,76,0.4);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: var(--gold);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    letter-spacing: 0.6em;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 3rem; }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--parchment);
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-body {
+    font-size: 1.05rem;
+    line-height: 2;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .intro-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--parchment);
+    padding-left: 2rem;
+    border-left: 2px solid var(--gold);
+  }
+
+  /* ── ACTOS TIMELINE ── */
+  .actos {
+    background: linear-gradient(180deg, var(--ink) 0%, #080f26 100%);
+  }
+
+  .actos-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+    opacity: 0.25;
+  }
+
+  .acto {
+    padding: 2.8rem 3rem;
+    position: relative;
+  }
+
+  .acto:nth-child(odd)  { border-right: 1px solid rgba(201,168,76,0.1); text-align: right; }
+  .acto:nth-child(even) { border-left: 1px solid rgba(201,168,76,0.1); }
+
+  .acto-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.08);
+    line-height: 1;
+    display: block;
+  }
+
+  .acto-time {
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .acto-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--parchment);
+    margin-bottom: 0.8rem;
+  }
+
+  .acto-desc {
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.9;
+  }
+
+  .acto-emotion {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--wine);
+    text-transform: uppercase;
+    border: 1px solid rgba(107,31,42,0.5);
+    padding: 0.3rem 0.8rem;
+  }
+
+  /* ── EXPERIENCE PILLARS ── */
+  .pillars {
+    background: var(--dusk);
+    text-align: center;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pillar { padding: 2.5rem 1.5rem; }
+
+  .pillar-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .pillar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .pillar-text {
+    font-size: 0.97rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.9;
+  }
+
+  /* ── FRASE CENTRAL ── */
+  .frase {
+    background: var(--wine);
+    text-align: center;
+    padding: 7rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .frase::before {
+    content: '❝';
+    position: absolute;
+    top: -2rem; left: 3rem;
+    font-size: 15rem;
+    color: rgba(255,255,255,0.04);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .frase-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--parchment);
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .frase-attr {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+  }
+
+  /* ── SENECA ── */
+  .seneca {
+    background: #060e22;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .seneca-label {
+    padding-top: 0.4rem;
+  }
+
+  .seneca-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 2;
+    color: rgba(245,240,232,0.7);
+    border-left: 1px solid rgba(201,168,76,0.3);
+    padding-left: 3rem;
+  }
+
+  .seneca-text strong {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* ── INVITACIÓN ── */
+  .invitacion {
+    background: var(--ink);
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .invitacion-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--parchment);
+    margin: 1.5rem 0;
+  }
+
+  .invitacion-sub {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.5);
+    max-width: 44ch;
+    margin: 0 auto 3rem;
+    line-height: 2;
+  }
+
+  .btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: opacity 0.3s;
+    margin: 0.4rem;
+  }
+  .btn-gold:hover { opacity: 0.85; }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(245,240,232,0.3);
+    color: var(--parchment);
+    text-decoration: none;
+    font-size: 0.82rem;
+    margin: 0.4rem;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── SOCIAL ── */
+  .social {
+    background: #060e22;
+    text-align: center;
+    padding: 4rem 3rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .social-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    margin-bottom: 1.8rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: rgba(245,240,232,0.5);
+    font-size: 0.88rem;
+    transition: color 0.3s;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(245,240,232,0.1);
+  }
+
+  .social-link:hover { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+
+  .social-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060e22;
+    text-align: center;
+    padding: 2rem 3rem;
+    border-top: 1px solid rgba(201,168,76,0.08);
+  }
+
+  footer p {
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    color: rgba(245,240,232,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ── FADE IN ── */
+  .fade {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .fade.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .intro { grid-template-columns: 1fr; gap: 3rem; }
+    .timeline { grid-template-columns: 1fr; }
+    .timeline::before { display: none; }
+    .acto:nth-child(odd) { text-align: left; border-right: none; border-left: 1px solid rgba(201,168,76,0.1); }
+    .pillars-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .seneca { grid-template-columns: 1fr; gap: 2rem; }
+    .seneca-text { padding-left: 1.5rem; }
+    .hero { padding: 0 1.5rem 5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Le Provocatour</a>
+  <ul class="nav-links">
+    <li><a href="#actos">El Viaje</a></li>
+    <li><a href="#experiencia">La Experiencia</a></li>
+    <li><a href="#invitacion">Reservar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament"></div>
+  <div class="fade">
+    <p class="hero-eyebrow">Una sola noche · Cuatro actos · Todos los sentidos</p>
+    <h1 class="hero-title">Le<br><em>Provo&shy;ca&shy;tour</em></h1>
+    <p class="hero-subtitle">El Tour de los Sentidos. Más allá de la imaginación.</p>
+    <a href="#invitacion" class="hero-cta">Solicitar invitación</a>
+  </div>
+  <span class="hero-scroll">Descubre el viaje</span>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="fade">
+    <span class="section-eyebrow">El concepto</span>
+    <h2 class="section-title">No es una cena.<br>Es un <em>viaje.</em></h2>
+    <p class="section-body">
+      Queremos que cada invitado deje atrás el teléfono, las prisas y las preocupaciones. No buscamos impresionar. Buscamos despertar la curiosidad y hacer que, poco a poco, sientas que el tiempo empieza a detenerse.
+    </p>
+  </div>
+  <blockquote class="intro-quote fade">
+    "Gracias por regalaros tiempo.<br>Esta noche hemos venido<br>a detenerlo."
+  </blockquote>
+</section>
+
+<div class="divider">· · ·</div>
+
+<!-- ACTOS -->
+<section class="actos" id="actos">
+  <div class="actos-header fade">
+    <span class="section-eyebrow">El programa</span>
+    <h2 class="section-title">Cuatro <em>actos.</em><br>Una sola noche.</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="acto fade">
+      <span class="acto-number">I</span>
+      <p class="acto-time">20:00 – 21:00</p>
+      <h3 class="acto-name">El Jardín Prohibido</h3>
+      <p class="acto-desc">La bienvenida comienza con el trueque de tu teléfono por un objeto simbólico. El Oráculo despierta el jardín. Performers y modelos provocan pequeños encuentros inesperados. El primer brindis ofrece una elección: vino o infusión mediterránea.</p>
+      <span class="acto-emotion">Misterio · Curiosidad</span>
+    </div>
+
+    <div class="acto fade">
+      <span class="acto-number">II</span>
+      <p class="acto-time">21:00 – 22:00</p>
+      <h3 class="acto-name">El Viñedo</h3>
+      <p class="acto-desc">Descalzos entre las viñas, compartiendo pan recién horneado, aceite y miel. Un pianista interpreta en vivo mientras el sol se esconde. Las vendas caen. Y el mayor espectáculo de la noche es la naturaleza.</p>
+      <span class="acto-emotion">Presencia · Asombro</span>
+    </div>
+
+    <div class="acto fade">
+      <span class="acto-number">III</span>
+      <p class="acto-time">22:00 – 23:40</p>
+      <h3 class="acto-name">La Gran Mesa</h3>
+      <p class="acto-desc">El Tour de los Sentidos. Cada plato representa un valor. Un viaje sensorial con los ojos vendados, una soprano que rompe una copa con su voz, bailarines, un cuadro pintado en directo y la Mesa de Peter Pan.</p>
+      <span class="acto-emotion">Conexión · Celebración</span>
+    </div>
+
+    <div class="acto fade">
+      <span class="acto-number">IV</span>
+      <p class="acto-time">23:40 – 00:20</p>
+      <h3 class="acto-name">El Regreso</h3>
+      <p class="acto-desc">La Geisha, el texto de Séneca, el tiramisú compartido. El Oráculo acerca el billete de Monopoly al fuego. Tu objeto permanece. Con él, el verdadero aprendizaje de la noche. Recibes tu Pasaporte LE PROVOCATOUR.</p>
+      <span class="acto-emotion">Transformación · Gratitud</span>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="experiencia">
+  <span class="section-eyebrow fade">Lo que te llevará</span>
+  <h2 class="section-title fade">Una experiencia <em>diseñada</em><br>para todos los sentidos</h2>
+
+  <div class="pillars-grid">
+    <div class="pillar fade">
+      <span class="pillar-icon">🍷</span>
+      <h3 class="pillar-name">Alta gastronomía</h3>
+      <p class="pillar-text">Chefs, vinos, ostras, carabineros, cocina mediterránea e italiana. Cada plato narra una historia. Cada bocado lleva su tiempo.</p>
+    </div>
+    <div class="pillar fade">
+      <span class="pillar-icon">🎭</span>
+      <h3 class="pillar-name">Arte en vivo</h3>
+      <p class="pillar-text">Piano, soprano, coro, danza, natación sincronizada, performers. La cultura no decora la noche. La noche es la obra.</p>
+    </div>
+    <div class="pillar fade">
+      <span class="pillar-icon">🌿</span>
+      <h3 class="pillar-name">Conexión humana</h3>
+      <p class="pillar-text">Sin teléfonos. Con preguntas verdaderas. Con personas con las que merece la pena detener el tiempo. El lujo más escaso del siglo XXI.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FRASE -->
+<div class="frase">
+  <p class="frase-text fade">
+    "Esta noche no queremos que elijas entre beber o no beber.<br>Queremos que elijas <strong>cómo quieres sentirte.</strong>"
+  </p>
+  <p class="frase-attr fade">— Le Provocatour</p>
+</div>
+
+<!-- SENECA -->
+<section class="seneca">
+  <div class="seneca-label fade">
+    <span class="section-eyebrow">La filosofía</span>
+    <h2 class="section-title" style="font-size:1.6rem;">Inspirado en <em>Séneca</em></h2>
+  </div>
+  <blockquote class="seneca-text fade">
+    "No es que tengamos poco tiempo…<br>
+    Sino que perdemos demasiado.<br><br>
+    Hoy, durante unas horas, hemos dejado de correr.<br>
+    Hemos vuelto a mirar a los ojos.<br>
+    Hemos compartido una mesa.<br><br>
+    <strong>Quizá el verdadero lujo siempre fue encontrar personas<br>
+    con las que mereciera la pena detener el tiempo.</strong>"
+  </blockquote>
+</section>
+
+<!-- INVITACION -->
+<section class="invitacion" id="invitacion">
+  <div class="fade">
+    <span class="section-eyebrow">Forma parte del viaje</span>
+    <h2 class="invitacion-title">¿Estás preparado<br>para el siguiente paso?</h2>
+    <p class="invitacion-sub">
+      LE PROVOCATOUR es una experiencia por invitación. Aforo muy limitado. Si sientes que esta noche es para ti, ponte en contacto con nosotros.
+    </p>
+    <a href="mailto:hola@leprovocatour.com" class="btn-gold">Solicitar invitación</a>
+    <a href="https://wa.me/34600000000" class="btn-outline" target="_blank">Escribir por WhatsApp</a>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<div class="social">
+  <p class="social-label">Síguenos</p>
+  <div class="social-links">
+    <a href="https://instagram.com/leprovocatour" class="social-link" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @leprovocatour
+    </a>
+    <a href="https://tiktok.com/@leprovocatour" class="social-link" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.77a8.17 8.17 0 004.78 1.53V6.85a4.85 4.85 0 01-1.01-.16z"/></svg>
+      TikTok
+    </a>
+    <a href="https://linkedin.com/company/leprovocatour" class="social-link" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://facebook.com/leprovocatour" class="social-link" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 LE PROVOCATOUR · El Tour de los Sentidos · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const fades = document.querySelectorAll('.fade');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fades.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
